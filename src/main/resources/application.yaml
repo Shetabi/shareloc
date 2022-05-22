@@ -5,7 +5,9 @@ spring:
     username: ${USERNAME}
     password: ${PASSWORD}
   jpa:
-    generate-ddl: false
+    generate-ddl: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: create-drop
