@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    username: test
+    password: test
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect

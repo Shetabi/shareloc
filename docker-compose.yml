@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  shareloc:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 8080:8080
+  db:
+    image: mysql:8.0
+    env_file:
+      - .env
+    cap_add:
+      - SYS_NICE
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQLDB_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -P 3306 -proot | grep 'mysqld is alive' || exit 1"]
+      interval: 1s
+      retries: 3
